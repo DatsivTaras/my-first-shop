@@ -24,4 +24,4 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('admin', [App\Http\Controllers\Admin\CategoriesController::class, 'index'])->name('admin');
+Route::resource('/categories', CategoriesController::class)->names('admin.categories');

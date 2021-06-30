@@ -21,17 +21,29 @@ class CategoriesController extends Controller
         return view('admin/categories/create');
 
     }
-    public function destroy() 
+    public function destroy($id) 
     {
-        echo 'gf';
+        $categori = Categories::where('id',$id)->first();
+        $categori->delete();
+        return redirect('categories');
     }
 
-    public function show() 
+    public function edit($id)
     {
+        $categori = Categories::where('id',$id)->first();
+        return view('admin/categories/edit',compact('categori'));
+    }
 
-      echo 'show';
+    public function update(Request $request,$id)
+    {
+        
+        $categori = Categories::find($id);
+        $categori->fill($request->all()); 
+        $categori->save();
+        return redirect('categories');
 
     }
+
     public function store(Request $request) 
     {
         

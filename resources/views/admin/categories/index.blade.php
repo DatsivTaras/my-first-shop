@@ -20,7 +20,16 @@
     <tr>
       <th scope="row">{{$categori->id}}</th>
       <td>{{$categori->name}}</td>
-      <td><a class="btn btn-danger" href="categories/destroy">Видалити</a></td>
+      <td>
+        <form id="destroy-form" method="POST" action="{{ route('admin.categories.destroy', $categori->id) }}">
+          @method('DELETE')
+          @csrf
+          <button>Видалити</button>
+        </form>
+          <td>
+            <a href="{{ route('admin.categories.edit', $categori->id) }}">Редагувати</a>
+          </td>
+      </td>
     </tr>
     @endforeach
   </tbody>
