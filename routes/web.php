@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\CategoriesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +23,5 @@ Route::get('/dashboard', function () {
 
 
 require __DIR__.'/auth.php';
+
+Route::get('admin', [App\Http\Controllers\Admin\CategoriesController::class, 'index'])->name('admin');
