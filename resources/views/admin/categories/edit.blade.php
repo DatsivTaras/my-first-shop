@@ -2,14 +2,16 @@
 
 @section('content')
 
-<form method='POST' action="{{ route('admin.categories.update', $categori->id) }}"> 
+<form method='POST' action="{{ route('admin.categories.update', $categori->id) }}">
 @method('PUT')
 @csrf
   <div class="mb-3">
     <label  class="form-label">Редагувати Категорію</label>
-    
+
     <input value='{{$categori->name}}' name='name' type="text" class="form-control" >
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div align='center'>
+    <button type="submit" class="btn btn-primary">Редагувати</button>
+</div>
 </form>
 @endsection

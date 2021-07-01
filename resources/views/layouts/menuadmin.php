@@ -11,7 +11,10 @@
               <ul class="navbar-nav mr-auto flex-column">
                
                 <li class="nav-item">
-                  <a class="btn btn-primary" href="" class="nav-link">Категорії</a>
+                  <a class="btn btn-primary" href="/categories" class="nav-link">Категорії</a>
+                </li><br>
+                <li class="nav-item">
+                  <a class="btn btn-primary" href="/products" class="nav-link">Продукти</a>
                 </li>
                
               </ul>
