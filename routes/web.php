@@ -32,3 +32,7 @@ Route::resource('/admin', AdminController::class)->names('admin');
 Route::resource('/categories', CategoriesController::class)->names('admin.categories');
 
 Route::resource('/products', ProductsController::class)->names('admin.products');
+
+
+
+Route::resource('/index', App\Http\Controllers\ProductsController::class)->names('index');
