@@ -20,13 +20,13 @@
             @include('layouts.navigation')
             @include('layouts.menuadmin')
 
-     
+
 
 
             <!-- Page Content -->
             <main class="py-4">
                 @yield('content')
-            
+
             </main>
 
     </body>

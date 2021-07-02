@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-            @include('layouts.navigation')
+            @include('layouts.menu')
 
             <!-- Page Content -->
             <main class="py-4">

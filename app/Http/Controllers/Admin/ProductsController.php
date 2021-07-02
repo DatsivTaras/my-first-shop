@@ -26,7 +26,6 @@ public function store(Request $request)
 {
     $products = new  Products();
     $products->fill($request->all());
-    $products->category_id = $request->category_id ;
     $products->save();
     return redirect('/products');
 }
@@ -40,8 +39,9 @@ public function destroy($id)
 
 public function edit($id)
 {
+    $categories = Categories::all();
     $product = Products::where('id',$id)->first();
-    return view('admin/products/edit', compact('product'));
+    return view('admin/products/edit', compact('product','categories'));
 }
 
 public function update(Request $request, $id)

@@ -11,11 +11,15 @@ class Products extends Model
 
     protected $fillable = [
         'name',
+        'price',
+        'description',
         'email',
         'password',
-        'category_id'
+        'category_id',
+
+
     ];
-   
+
     public function category()
     {
         return $this->hasOne(Categories::class, 'id', 'category_id');

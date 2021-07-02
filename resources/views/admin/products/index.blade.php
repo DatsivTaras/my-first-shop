@@ -4,24 +4,28 @@
 @section('content')
 
     <h1 align='center'>Товари</h1>
+    <div align='right'>
+        <a class="btn btn-primary" href="products/create" >Добавити Товар</a><br><br>
+    </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">id </th>
+
       <th scope="col">Імя</th>
       <th scope="col">Категорія</th>
+      <th scope="col">Ціна</th>
+      <th scope="col">Опис</th>
 
     </tr>
   </thead>
   <tbody>
-    <div align='right'>
-        <a class="btn btn-primary" href="products/create" >Добавити Товар</a><br><br>
-    </div>
+
     @foreach ($products as $product)
     <tr>
-        <th scope="row">{{$product->id}}</th>
         <td>{{$product->name}}</td>
+        <td>{{$product->price}}</td>
+        <td>{{$product->description}}</td>
         <td>{{$product->category ? $product->category->name : ''}}</td>
         <td>
             <form id="destroy-form" method="POST" action="{{ route('admin.products.destroy', $product->id) }}">
@@ -37,6 +41,5 @@
     @endforeach
   </tbody>
 </table>
-
 @endsection
 
