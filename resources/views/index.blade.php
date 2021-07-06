@@ -1,12 +1,40 @@
 @extends('layouts/app')
 
 @section('content')
-    <header class="bg-dark py-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Товари</h1>
-        </div>
-    </header>
-        <section class="py-5">
+
+<div class="container-fluid">
+    <div class="row">
+        <header class="col-md-2">
+            <nav class="sidebar-sticky  navbar-expand-md">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto flex-column">
+                        @foreach($categories as $categori)
+                            <li class="nav-item">
+                                <a class="btn btn-light" href="/prodducts/{{$categori['id']}}" class="nav-link">{{$categori['name']}}</a>
+                            </li><br>
+                        @endforeach
+                    </ul>
+                    </div>
+            </nav>
+        </header>
+    <main class="col-md-9">
+    {{ 3 == 2 ? 'Hello' : 'World';}}
+{{$valueSelect}}
+    <form method="get">
+        <div class="input-group">
+            <input  name='search' value="{{$valueSearch}}" type="search" class="form-control rounded" placeholder="Search" aria-label="Search">
+            <select  name='filtering' class="form-select" aria-label="Default select example">
+                <option  {{ $valueSelect == 3 ? 'selected' : '' }}  value="3">Найновіші</option>
+                <option  {{ $valueSelect == 1 ? 'selected' : '' }}  value="1">Найдорожчі</option>
+                <option  {{ $valueSelect == 2 ? 'selected' : '' }}  value="2">Найдешевші</option>
+            </select>
+            <button type="submit" class="btn btn-outline-primary">search</button>
+        </div><br>
+    </form>
+           <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach ($products as $product)
@@ -16,8 +44,13 @@
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">{{$product->name}}</h5>
-                                        {{$product->price}}
                                     </div>
+                                </div>
+                                <div align='center' >
+                                    Ціна : {{$product->price}}
+                                </div><br>
+                                <div align='center' >
+                                    {{$product->created_at}}
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center"><a  class="btn btn-secondary" href="#">Купити</a></div>
@@ -28,7 +61,7 @@
                 </div>
             </div>
         </section>
-        <footer class="py-5 bg-dark">
+        <footer class="py-2 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

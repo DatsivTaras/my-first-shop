@@ -2,25 +2,20 @@
 
 
 @section('content')
-
     <h1 align='center'>Товари</h1>
     <div align='right'>
         <a class="btn btn-primary" href="products/create" >Добавити Товар</a><br><br>
     </div>
-
 <table class="table">
   <thead>
     <tr>
-
       <th scope="col">Імя</th>
       <th scope="col">Категорія</th>
       <th scope="col">Ціна</th>
       <th scope="col">Опис</th>
-
     </tr>
   </thead>
   <tbody>
-
     @foreach ($products as $product)
     <tr>
         <td>{{$product->name}}</td>
