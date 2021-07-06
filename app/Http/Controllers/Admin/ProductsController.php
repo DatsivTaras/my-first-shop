@@ -11,8 +11,10 @@ class ProductsController extends Controller
 {
     public function index()
     {
+
         $products =  Products::all();
         return view('admin/products/index',compact('products'));
+
     }
 
 public function create()
@@ -50,9 +52,10 @@ public function update(Request $request, $id)
     $product->fill($request->all());
     $product->save();
     return redirect('/products');
-
-
 }
+
+
+
 
 
 }

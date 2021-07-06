@@ -35,4 +35,4 @@ Route::resource('/products', ProductsController::class)->names('admin.products')
 
 
 
-Route::resource('/index', App\Http\Controllers\ProductsController::class)->names('index');
+Route::get('/prodducts/{id?}', [App\Http\Controllers\ProductsController::class,'index'])->name('products');
