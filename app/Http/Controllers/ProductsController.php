@@ -13,8 +13,6 @@ class ProductsController extends Controller
 
         $query = Products::where('category_id', $id);
 
-
-
         if (!empty($request->input('search'))) {
             $query->where('name','LIKE', '%'.$request->input('search').'%');
         }
@@ -30,19 +28,17 @@ class ProductsController extends Controller
         if (!empty($request->input('filtering')) && $request->input('filtering') == 3 ) {
             $query->orderBy('created_at', 'desc');
         }
-
-
         $products = $query->paginate(15);
         $categories = Categories::all();
+
         $valueSelect = $request->input('filtering');
         $valueSearch = $request->input('search');
 
         if (empty($id)) {
-            $products = Products::orderBy('created_at','desc')->paginate(5);
+            $products = Products::orderBy('created_at','desc')->paginate(21);
         }
 
-
-        return view('index',compact('products','categories','valueSearch','valueSelect'));
+        return view('index',compact('products','categories','valueSearch','valueSelect','id'));
 
     }
 }
