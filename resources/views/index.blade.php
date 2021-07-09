@@ -1,7 +1,24 @@
 @extends('layouts/app')
 
 @section('content')
-
+<script>
+    $(function(){
+        $(document).on('click', '.js-add-cart', function(){
+            var id = $(this).data('id');
+            $.ajax({
+                method: 'post',
+                url: "/order/add-to-cart",
+                data:{
+                    id:id ,
+                    "_token": "{{ csrf_token() }}"
+                },
+                dataType: 'json',
+            }).done(function(result) {
+                console.log(result['count_product']);
+            });
+        });
+    });
+</script>
 <div class="container-fluid">
     <div class="row">
         <header class="col-md-2">
@@ -17,43 +34,47 @@
                             </li><br>
                         @endforeach
                     </ul>
-                    </div>
+                </div>
             </nav>
         </header>
     <main class="col-md-9">
-    {{ 3 == 2 ? 'Hello' : 'World';}}
-{{$valueSelect}}
-    <form method="get">
-        <div class="input-group">
-            <input  name='search' value="{{$valueSearch}}" type="search" class="form-control rounded" placeholder="Search" aria-label="Search">
-            <select  name='filtering' class="form-select" aria-label="Default select example">
-                <option  {{ $valueSelect == 3 ? 'selected' : '' }}  value="3">Найновіші</option>
-                <option  {{ $valueSelect == 1 ? 'selected' : '' }}  value="1">Найдорожчі</option>
-                <option  {{ $valueSelect == 2 ? 'selected' : '' }}  value="2">Найдешевші</option>
-            </select>
-            <button type="submit" class="btn btn-outline-primary">search</button>
-        </div><br>
-    </form>
-           <section class="py-5">
+        <form method="get">
+            <div class="input-group">
+                <input  name='search' value="{{$valueSearch}}" type="search" class="form-control rounded" placeholder="Search" aria-label="Search">
+                <select  name='filtering' class="form-select" aria-label="Default select example">
+                    <option  {{ $valueSelect == 3 ? 'selected' : '' }}  value="3">Найновіші</option>
+                    <option  {{ $valueSelect == 1 ? 'selected' : '' }}  value="1">Найдорожчі</option>
+                    <option  {{ $valueSelect == 2 ? 'selected' : '' }}  value="2">Найдешевші</option>
+                </select>
+                <button type="submit" class="btn btn-outline-primary">search</button>
+            </div><br>
+        </form>
+        <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach ($products as $product)
                         <div class="col mb-5">
                             <div class="card h-100">
-                                <img class="card-img-top" src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-pro-gold-hero?wid=470&hei=556&fmt=png-alpha&.v=1604021659000" alt="..." />
+                                <a href='/product/{{$product->id}}'>
+                                    <img class="card-img-top" src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-12-pro-gold-hero?wid=470&hei=556&fmt=png-alpha&.v=1604021659000" alt="..." />
+                                </a>
                                 <div class="card-body p-4">
                                     <div class="text-center">
-                                        <h5 class="fw-bolder">{{$product->name}}</h5>
+                                        <a href='/product/{{$product->id}}'>
+                                            <h5 class="fw-bolder">{{$product->name}}</h5>
+                                        </a>
                                     </div>
                                 </div>
                                 <div align='center' >
                                     Ціна : {{$product->price}}
                                 </div><br>
                                 <div align='center' >
-                                    {{$product->created_at}}
+                                    {{$product->created_at->format('j-M H:i');}}
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a  class="btn btn-secondary" href="#">Купити</a></div>
+                                    <div class="text-center">
+                                        <button class='js-add-cart'data-id= {{$product->id}}> В корзинуч</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,8 +85,11 @@
         <footer class="py-2 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/scripts.js"></script>
+
+
+
+
+@endsection
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -81,7 +105,3 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-@endsection

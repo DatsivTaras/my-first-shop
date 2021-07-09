@@ -36,3 +36,9 @@ Route::resource('/products', ProductsController::class)->names('admin.products')
 
 
 Route::get('/prodducts/{id?}', [App\Http\Controllers\ProductsController::class,'index'])->name('products');
+
+Route::get('/product/{id?}', [App\Http\Controllers\ShowController::class,'show'])->name('product');
+
+Route::post('/order/add-to-cart', [App\Http\Controllers\OrderController::class,'addToCart'])->name('order/add-to-cart');
+
+
