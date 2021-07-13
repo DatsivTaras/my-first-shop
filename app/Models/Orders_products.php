@@ -9,13 +9,12 @@ class Orders_products extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
         'order_id',
         'product_id',
-        'email',
-        'password',
-        'category_id',
-
-
+        'id',
     ];
+    public function products()
+    {
+        return $this->hasOne(Products::class, 'id', 'product_id');
+    }
 }

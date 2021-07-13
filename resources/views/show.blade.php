@@ -1,13 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
-<form class="d-flex">
-    <button class="btn btn-outline-dark" type="submit">
-        <i class="bi-cart-fill me-1"></i>
-            Cart
-        <span class="js-products-count badge bg-dark text-white ms-1 rounded-pill">{{$countsOrders}}</span>
-    </button>
-</form>
+
 <script>
 $(function(){
     $(document).on('click', '.js-add-cart', function(){
@@ -22,8 +16,8 @@ $(function(){
             dataType: 'json',
         }).done(function(result) {
             console.log(result['count_product']);
-            $('.js-add-cart').text('');
-            $('.js-products-count').text(result['count_product']);
+            $('.js-add-product').text(result['count_product']);
+
         });
     });
 });

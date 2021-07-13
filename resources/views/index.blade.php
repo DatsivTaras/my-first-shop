@@ -1,6 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
+
 <script>
     $(function(){
         $(document).on('click', '.js-add-cart', function(){
@@ -15,6 +16,7 @@
                 dataType: 'json',
             }).done(function(result) {
                 console.log(result['count_product']);
+                $('.js-add-product').text(result['count_product']);
             });
         });
     });
@@ -73,7 +75,7 @@
                                 </div>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
-                                        <button class='js-add-cart'data-id= {{$product->id}}> В корзинуч</button>
+                                        <button class='js-add-cart btn btn-primary'data-id= {{$product->id}}> В корзину</button>
                                     </div>
                                 </div>
                             </div>

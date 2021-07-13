@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,8 @@ Route::resource('/admin', AdminController::class)->names('admin');
 Route::resource('/categories', CategoriesController::class)->names('admin.categories');
 
 Route::resource('/products', ProductsController::class)->names('admin.products');
+
+Route::resource('/orders', OrderController::class)->names('admin.orders');
 
 
 
