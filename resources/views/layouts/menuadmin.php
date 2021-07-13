@@ -15,6 +15,9 @@
                 </li><br>
                 <li class="nav-item">
                   <a class="btn btn-primary" href="/products" class="nav-link">Продукти</a>
+                </li><br>
+                <li class="nav-item">
+                  <a class="btn btn-primary" href="/orders" class="nav-link">Замовлення</a>
                 </li>
 
               </ul>

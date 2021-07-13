@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Products;
 use App\Models\Categories;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -37,8 +38,12 @@ class ProductsController extends Controller
         if (empty($id)) {
             $products = Products::orderBy('created_at','desc')->paginate(21);
         }
-
-        return view('index',compact('products','categories','valueSearch','valueSelect','id'));
+            $countsProducts='';
+            $orders = Orders::where('user_id',auth()->user()->id)->where('status',0)->first();
+            if(!empty($orders->id)){
+                $countsProducts = $orders->ordersProducts()->count();
+            }
+            return view('index',compact('products','categories','valueSearch','valueSelect','id','countsProducts'));
 
     }
 }
