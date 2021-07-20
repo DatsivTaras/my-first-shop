@@ -12,6 +12,7 @@ class ProductsController extends Controller
     public function index(Request $request ,$id='')
     {
 
+
         $query = Products::where('category_id', $id);
 
         if (!empty($request->input('search'))) {
@@ -38,12 +39,8 @@ class ProductsController extends Controller
         if (empty($id)) {
             $products = Products::orderBy('created_at','desc')->paginate(21);
         }
-            $countsProducts='';
-            $orders = Orders::where('user_id',auth()->user()->id)->where('status',0)->first();
-            if(!empty($orders->id)){
-                $countsProducts = $orders->ordersProducts()->count();
-            }
-            return view('index',compact('products','categories','valueSearch','valueSelect','id','countsProducts'));
+
+            return view('index',compact('products','categories','valueSearch','valueSelect','id'));
 
     }
 }

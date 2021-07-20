@@ -13,13 +13,15 @@ class Orders extends Model
         'user_id',
     ];
 
-    public function ordersProducts()
+    public function products()
     {
-        return $this->hasMany(Orders_products::class, 'order_id');
+        return $this->hasMany(OrdersProducts::class, 'order_id');
     }
 
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+
 }

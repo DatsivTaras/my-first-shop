@@ -44,4 +44,10 @@ Route::get('/product/{id?}', [App\Http\Controllers\ShowController::class,'show']
 
 Route::post('/order/add-to-cart', [App\Http\Controllers\OrderController::class,'addToCart'])->name('order/add-to-cart');
 
+Route::post('/order/delete', [App\Http\Controllers\OrderController::class,'deleteProduct'])->name('order/delete');
+
+Route::get('/cart', [App\Http\Controllers\OrderController::class,'cart'])->name('cart');
+
+Route::post('/makingAnOrder', [App\Http\Controllers\OrderController::class,'makingAnOrder'])->name('makingAnOrder');
+
 
