@@ -24,4 +24,13 @@ class Products extends Model
     {
         return $this->hasOne(Categories::class, 'id', 'category_id');
     }
+
+    public function inOrder($userid)
+    {
+        $order = Orders::where('user_id', $userid)->where('status', 0)->first();
+        if($order){
+            return $order->products()->where('product_id', $this->id)->exists();
+        }
+        }
+
 }

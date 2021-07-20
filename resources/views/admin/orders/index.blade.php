@@ -18,14 +18,3 @@
         @endforeach
     </table>
 @endsection
-
-        @foreach ($orders as $order)
-            @foreach ($order->ordersProducts as $orderproduct)
-                <!-- <tr>
-                    <td>{{$order->id}}</td>
-                    <td>{{$order->user->name}}</td>
-                    <!-- <td>{{$order->user->name}}</td>
-                    <td>{{$orderproduct->products->name}}</td> -->
-                <!-- </tr> -->
-            @endforeach<br>
-        @endforeach

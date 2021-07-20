@@ -15,7 +15,9 @@
             </tr>
         </thead>
             @foreach ($orders as $order)
-                @foreach($order->ordersProducts as $product)
+            {{'id: '}}<b>{{$order->id}}</b><br>
+            {{'Користувач: '}}<b>{{$order->user->name}}</b>
+                @foreach($order->Products as $product)
 
                 <tr>
                     <td>{{$product->products->id}}</td>

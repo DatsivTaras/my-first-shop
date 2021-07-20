@@ -17,7 +17,7 @@ $(function(){
         }).done(function(result) {
             console.log(result['count_product']);
             $('.js-add-product').text(result['count_product']);
-
+            $('.js-product').text('В корзині');
         });
     });
 });
@@ -38,8 +38,9 @@ $(function(){
                     <div align='center' >
                         {{$products->created_at->format('j-M H:i');}}
                     </div>
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <button class='js-add-cart'data-id= {{$products->id}}> В корзину</button>
+                    <div align='center' class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+
+                        <button class='js-add-cart js-product btn btn-primary' data-id='{{$products->id}}'>{{  $products->inOrder(auth()->user()->id) ? 'В Кошику':'Купити'}} </button>
                     </div>
                 </div>
             </div>
