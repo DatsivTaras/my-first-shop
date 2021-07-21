@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Orders;
+use App\Models\User;
 use App\Models\OrdersProducts;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,7 @@ class OrderController extends Controller
 {
     public function cart()
     {
+        $user = User::where('id',auth()->user()->id)->first();
         $order = Orders::where('user_id',auth()->user()->id)->where('status',0)->first();
         $sumPrice = 0;
         if($order){
@@ -17,7 +19,7 @@ class OrderController extends Controller
                 $sumPrice = $sumPrice + $price;
             }
         }
-        return view('cart',compact('order','sumPrice'));
+        return view('cart',compact('order','sumPrice','user'));
     }
 
     public function addToCart(Request $request)
@@ -69,7 +71,7 @@ class OrderController extends Controller
     {
         $order = Orders::where('user_id',auth()->user()->id)->where('status',0)->first();
         $order->name = $request->name;
-        $order->surname =$request->surname;
+        $order->surname = $request->surname;
         $order->address =$request->address;
         $order->phone = $request->phone;
         $order->status = 1;
