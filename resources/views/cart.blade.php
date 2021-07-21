@@ -30,59 +30,55 @@
             </div>
         </div>
     @endforeach
-    <br><br><br><div style="padding-left:115px;" align='left'>
+    <br><br><br><div style="padding-left:400px;" align = 'left'>
         <h3 >Загальна сума: <b class='js-sum-products'>{{$sumPrice}} ₴</b></h3>
     </div>
+    <hr>
 
     <!DOCTYPE html>
 <html>
  <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
- <link href='https://bootstraptema.ru/snippets/form/2017/recaptcha/custom.css' rel='stylesheet' type='text/css'>
- </head>
+</head>
     <body>
         <div class="js-all-products ">
             <div class="row">
+            <div align='center'>
                 <div class="col-lg-8 col-lg-offset-2">
                     <h1 class="text-center">Оформлення замовлення</h1>
-                        <form id="contact-form" method="post" action="/makingAnOrder" role="form">
-                        @csrf
-                        <div class="controls">
+                        <form id="contact-form" method = "post" action = "/makingAnOrder" role = "form">
+                            @csrf
+                            <div class="controls">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="form_name">Прізвище *</label>
-                                            <input  type="text" name="name" class="form-control" placeholder="Введіть ваше Прізвище*" required="required" >
+                                            <label for="form_name">Імя *</label>
+                                            <input  type = "text" value = '{{$user->name}}' name = "name" class = "form-control" placeholder = "Введіть ваше Прізвище*" required = "dsf" >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="form_lastname">Імя *</label>
-                                            <input  type="text" name="surname" class="form-control" placeholder="Введіть ваше ім'я*" required="required" >
+                                            <label for="form_lastname">Прізвище *</label>
+                                            <input  type = "text" value = '{{$user->surname}}' name = "surname" class = "form-control" placeholder = "Введіть ваше ім'я*" required = "required" >
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="form_address">Адрес *</label>
-                                            <input  type="address" name="address" class="form-control" placeholder="Введіть адрес доставки*" required="required">
-
+                                            <label for = "form_address">Адрес *</label>
+                                            <input  type = "address" value = '{{$user->address}}' name = "address" class = "form-control" placeholder = "Введіть адрес доставки*" required = "required">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="form_phone">Телефон</label>
-                                            <input  type="tel" name="phone" class="form-control" placeholder="Введіть ваш телефон*">
+                                            <label for = "form_phone">Телефон</label>
+                                            <input id = "form_phone" type = "tel" value = '{{$user->phone}}' name = "phone" class = "form-control" placeholder = "Введіть ваш телефон*"required = "required">
                                         </div>
                                     </div>
                                 </div>
                                 <br><br><div class="row">
-                                    <br><br><div align='center' class="col-md-12">
-                                        <input type="submit" class="btn btn-success btn-send" value="Підтвердити замовлення">
+                                    <br><br><div align = 'center' class = "col-md-12">
+                                        <input type = "submit" class = "btn btn-success btn-send" value = "Підтвердити замовлення">
                                     </div>
                                 </div>
                             </div>
@@ -90,9 +86,9 @@
                 </div><!-- /.col-lg-8 col-lg-offset-2 -->
             </div> <!-- /.row-->
         </div> <!-- /.container-->
+    </div>
     </body>
 </html>
-
     @else
         <br><br><br><br><br><br><br><br><div class='js-not-products' align = 'center'>
         <img src="https://xl-static.rozetka.com.ua/assets/img/design/modal-cart-dummy.svg" width="189" height="525" >
@@ -114,9 +110,11 @@
                 },
                 dataType: 'json',
             }).done(function(result) {
-
+                if(result['count_product'] == 0 ){
+                    location.reload();
+                }
                 $('.js-product-'+id).remove();
-                location.reload();
+
                 $('.js-add-product').text(result['count_product']);
                 $('.js-sum-products').text(result['sumPrice']+ ' ₴');
 
@@ -124,23 +122,10 @@
         });
     });
 </script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
+
+
+
 @endsection
 
 
 
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

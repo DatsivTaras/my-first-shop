@@ -46,8 +46,15 @@ Route::post('/order/add-to-cart', [App\Http\Controllers\OrderController::class,'
 
 Route::post('/order/delete', [App\Http\Controllers\OrderController::class,'deleteProduct'])->name('order/delete');
 
+Route::post('/makingAnOrder', [App\Http\Controllers\OrderController::class,'makingAnOrder'])->name('makingAnOrder');
+
 Route::get('/cart', [App\Http\Controllers\OrderController::class,'cart'])->name('cart');
 
-Route::post('/makingAnOrder', [App\Http\Controllers\OrderController::class,'makingAnOrder'])->name('makingAnOrder');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class,'index'])->name('profile');
+
+Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class,'edit'])->name('profile.edit');
+
+Route::post('/profile/update', [App\Http\Controllers\ProfileController::class,'update'])->name('profile.update');
+
 
 
