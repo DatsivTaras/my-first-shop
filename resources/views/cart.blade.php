@@ -98,6 +98,7 @@
     </div>
     @endif
     <script>
+
     $(function(){
         $(document).on('click', '.js-delete-product', function(){
             var id = $(this).data('id');
@@ -113,10 +114,12 @@
                 if(result['count_product'] == 0 ){
                     location.reload();
                 }
+
                 $('.js-product-'+id).remove();
 
                 $('.js-add-product').text(result['count_product']);
                 $('.js-sum-products').text(result['sumPrice']+ ' ₴');
+
 
             });
         });

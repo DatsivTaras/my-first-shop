@@ -28,7 +28,7 @@ class ProductsController extends Controller
         if (!empty($request->input('filtering')) && $request->input('filtering') == 3 ) {
             $query->orderBy('created_at', 'desc');
         }
-        $products = $query->paginate(15);
+        $products = $query->get();
         $categories = Categories::all();
 
         $valueSelect = $request->input('filtering');

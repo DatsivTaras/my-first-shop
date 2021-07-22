@@ -33,7 +33,6 @@ class OrderController extends Controller
                 'status' => 'error'
             ]);
         }
-
         if (!$order) {
             $order = new Orders();
             $order->user_id = $userId;
@@ -51,6 +50,7 @@ class OrderController extends Controller
             'count_product' => (int)$order->products->count()
         ]);
     }
+
     public function deleteProduct(Request $request)
     {
         $order = Orders::where('user_id',auth()->user()->id)->where('status',0)->first();
@@ -67,15 +67,27 @@ class OrderController extends Controller
             'sumPrice' => $sumPrice
         ]);
     }
+
     public function makingAnOrder(Request $request)
     {
         $order = Orders::where('user_id',auth()->user()->id)->where('status',0)->first();
-        $order->name = $request->name;
-        $order->surname = $request->surname;
-        $order->address =$request->address;
-        $order->phone = $request->phone;
+        $sumPrice = 0;
+        foreach ($order->products as $product) {
+            $price = $product->products->price;
+            $sumPrice = $sumPrice + $price;
+        }
+        $order->fill($request->all());
+        $order->sum = $sumPrice;
         $order->status = 1;
         $order->save();
         return redirect('/prodducts');
     }
+
+    public function myOrders()
+    {
+        $orders = Orders::where('user_id',auth()->user()->id)->where('status','>',0)->get();
+
+        return view('profile/my-orders',compact('orders'));
+    }
+
 }

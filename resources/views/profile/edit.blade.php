@@ -14,13 +14,13 @@
                                     <div class="col-md-6">
                                         <div align='left' class="form-group">
                                             <label for="form_name">Імя *</label>
-                                            <input  type="text" name="name" value='{{$user->name}}' class="form-control" placeholder="Введіть ваше Прізвище*" required="required" >
+                                            <input  type="text" name="name" value='{{$user->name}}' class="form-control" placeholder="Введіть ваше Прізвище*"  >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div align='left' class="form-group">
                                             <label for="form_lastname">Прізвище *</label>
-                                            <input  type="text" name="surname" value='{{$user->surname}}' class="form-control" placeholder="Введіть ваше ім'я*" required="required" >
+                                            <input  type="text" name="surname" value='{{$user->surname}}' class="form-control" placeholder="Введіть ваше ім'я*"  >
                                         </div>
                                     </div>
                                 </div>
@@ -28,13 +28,13 @@
                                     <div class="col-md-6">
                                         <div align='left' class="form-group">
                                             <label for="form_address">Адрес *</label>
-                                            <input  type="address" name="address" value='{{$user->address}}' class="form-control" placeholder="Введіть адрес доставки*" required="required">
+                                            <input  type="address" name="address" value='{{$user->address}}' class="form-control" placeholder="Введіть адрес доставки*" >
                                       </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div align='left' class="form-group">
                                             <label for="form_phone">Телефон</label>
-                                            <input id="form_phone" type="tel" name="phone" value='{{$user->phone}}' class="form-control" placeholder="Введіть ваш телефон*"required="required">
+                                            <input id="form_phone" type="tel" name="phone" value='{{$user->phone}}' class="form-control" placeholder="Введіть ваш телефон*">
                                         </div>
                                     </div>
                                 </div>

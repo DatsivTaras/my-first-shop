@@ -36,6 +36,9 @@ Route::resource('/products', ProductsController::class)->names('admin.products')
 
 Route::resource('/orders', OrderController::class)->names('admin.orders');
 
+Route::post('/status', [App\Http\Controllers\admin\OrderController::class,'status'])->name('admin.status');
+
+
 
 
 Route::get('/prodducts/{id?}', [App\Http\Controllers\ProductsController::class,'index'])->name('products');
@@ -56,5 +59,6 @@ Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class,'edit
 
 Route::post('/profile/update', [App\Http\Controllers\ProfileController::class,'update'])->name('profile.update');
 
+Route::get('/profile/my-orders', [App\Http\Controllers\OrderController::class,'myOrders'])->name('profile.my-orders');
 
 

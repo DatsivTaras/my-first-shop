@@ -1,7 +1,27 @@
 @extends('layouts/app')
 
 @section('content')
-    <div class="container">
+<div class="container-fluid">
+      <div class="row">
+        <header class="col-md-2">
+          <nav class="sidebar-sticky  navbar-expand-md">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto flex-column">
+                <li class="nav-item">
+                  <a class="btn btn-primary" href="/profile" class="nav-link">Мій кабінет</a>
+                </li><br>
+                <li class="nav-item">
+                  <a class="btn btn-primary" href="/profile/my-orders" class="nav-link">Замовлення</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+    <main class="col-md-9">
+<div class="container">
         <div class="main-body">
             <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
